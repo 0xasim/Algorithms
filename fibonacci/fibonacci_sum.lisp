@@ -18,13 +18,15 @@
     (calc_fib n 0 1)))
 
 (defun fib_rec_memo (n)
-  "Same as naive recursion but with memoization optimization applied."
+  "O(log n). Same as naive recursion but with memoization optimization applied."
+  "Actually O(polylog n)"
   (if (< n 2)
     n
     (+ (fib_rec_memo (- n 1))
        (fib_rec_memo (- n 2)))))
 
 (defun fib_loop_bubble (n)
+  "O(n). Similar to bubblesort."
   (check-type n fixnum)
   (loop repeat n
       with p = 0 with q = 1
