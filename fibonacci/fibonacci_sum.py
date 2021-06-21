@@ -13,15 +13,13 @@ def fib_rec_tailcall(n):
     return calc_fib(n-1, b, a+b)
   return calc_fib(n, 0 ,1)
 
-from functools import lru_cache
 from memoization import cached
-#@cached(thread_safe=False)
-@lru_cache()
+@cached(thread_safe=False)
 def fib_rec_memo(n):
   "O(log n). Same as naive recursion but with memoization optimization applied."
   if n < 2:
     return n
-  return fib_rec_basic(n-1) + fib_rec_basic(n-2)
+  return fib_rec_memo(n-1) + fib_rec_memo(n-2)
   
 
 def timeMe(f, n):
@@ -33,8 +31,7 @@ def timeMe(f, n):
   
 
 if __name__ == "__main__":
-  import time
-  n = 30
+  n = 35
   timeMe(fib_rec_tailcall, n)
   timeMe(fib_rec_memo, n)
   timeMe(fib_rec_basic, n)
