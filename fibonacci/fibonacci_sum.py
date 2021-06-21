@@ -13,15 +13,15 @@ def fib_rec_tailcall(n):
     return calc_fib(n-1, b, a+b)
   return calc_fib(n, 0 ,1)
 
-if __name__ == "__main__":
+def timeMe(f, n):
   import time
-  t = time.time()
-  fib_rec_tailcall(40)
-  f = time.time()
-  print(f"Time was {f-t}")
-
   s = time.time()
-  print(fib_rec_basic(40))
+  f(n)
   e = time.time()
   print(f"Time was {e-s}")
+  
 
+if __name__ == "__main__":
+  import time
+  timeMe(fib_rec_tailcall, 40)
+  timeMe(fib_rec_basic, 40)
