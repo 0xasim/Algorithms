@@ -24,9 +24,20 @@
     (+ (fib_rec_memo (- n 1))
        (fib_rec_memo (- n 2)))))
 
+(defun fib_loop_bubble (n)
+  (check-type n fixnum)
+  (loop repeat n
+      with p = 0 with q = 1
+      do (psetq p q
+        q (+ p q))
+      finally (return p)))
+
+
+
 (fare-memoization:memoize 'fib_rec_memo)
 
-(time (print (fib_rec_tailcall 40)))
-(time (print (fib_rec_memo 40)))
-(time (print (fib_rec_basic 40)))
+(time (print (fib_rec_tailcall 800)))
+(time (print (fib_rec_memo 800)))  ; Illegal Harware instruction error for values approx. > 18,800
+(time (print (fib_loop_bubble 800)))
+;(time (print (fib_rec_basic 40)))
 
