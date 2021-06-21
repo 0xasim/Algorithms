@@ -1,5 +1,7 @@
+#Return the sum of fibonacci sequence upto n
+
 def fib_rec_basic(n):
-  "Return the nth Fibonacci number."
+  "Exponential? Naive recursion."
   if n < 2:
     return n
   return fib_rec_basic(n-1) + fib_rec_basic(n-2)
