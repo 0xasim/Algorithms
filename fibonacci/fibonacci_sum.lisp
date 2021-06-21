@@ -3,14 +3,14 @@
 (ql:quickload "fare-memoization")
 
 (defun fib_rec_basic (n)
-  "naive recursion"
+  "Naive recursion."
   (if (< n 2)
     n
     (+ (fib_rec_basic (- n 1))
        (fib_rec_basic (- n 2)))))
 
 (defun fib_rec_tailcall (n)
-  "tailcall Optimized recursion"
+  "Recursion with tailcall optimization."
   (labels ((calc_fib (n a b)
              (if (= n 0)
                  a
@@ -18,7 +18,7 @@
     (calc_fib n 0 1)))
 
 (defun fib_rec_memo (n)
-  "Memoization optimized recursion"
+  "Same as naive recursion but with memoization optimization applied."
   (if (< n 2)
     n
     (+ (fib_rec_memo (- n 1))
