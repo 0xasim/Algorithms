@@ -3,7 +3,7 @@
 (ql:quickload "fare-memoization")
 
 (defun fib_rec_basic (n)
-  "Naive recursion."
+  "Exponential? Naive recursion."
   (if (< n 2)
     n
     (+ (fib_rec_basic (- n 1))
@@ -19,7 +19,6 @@
 
 (defun fib_rec_memo (n)
   "O(log n). Same as naive recursion but with memoization optimization applied."
-  "Actually O(polylog n)"
   (if (< n 2)
     n
     (+ (fib_rec_memo (- n 1))
@@ -39,7 +38,7 @@
 (fare-memoization:memoize 'fib_rec_memo)
 
 (time (print (fib_rec_tailcall 800)))
-(time (print (fib_rec_memo 800)))  ; Illegal Harware instruction error for values approx. > 18,800
+(time (print (fib_rec_memo 800)))  ; Illegal Harware instruction error for approx. n > 18,800
 (time (print (fib_loop_bubble 800)))
 ;(time (print (fib_rec_basic 40)))
 
