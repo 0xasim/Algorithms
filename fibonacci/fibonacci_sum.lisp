@@ -37,6 +37,7 @@
 
 (fare-memoization:memoize 'fib_rec_memo)
 
+; TOD0: write a timeMe function just like the python one.
 (time (print (fib_rec_tailcall 800)))
 (time (print (fib_rec_memo 800)))  ; Illegal Harware instruction error for approx. > 18,800
 (time (print (fib_loop_bubble 800)))

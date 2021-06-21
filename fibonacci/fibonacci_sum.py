@@ -20,7 +20,6 @@ def fib_rec_memo(n):
   if n < 2:
     return n
   return fib_rec_memo(n-1) + fib_rec_memo(n-2)
-  
 
 def timeMe(f, n):
   import time
