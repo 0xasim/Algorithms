@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+from .extra.utils import call
+
 # Return the sum of fibonacci sequence upto n
 
 def fib_rec_basic(n):
@@ -17,22 +19,15 @@ def fib_rec_tailcall(n):
 
 import functools
 @functools.cache
-def fib_rec_memo(n):
+def fib_rec_memo(n: int):
   "O(log n). Same as naive recursion but with memoization optimization applied."
   if n < 2:
     return n
   return fib_rec_memo(n-1) + fib_rec_memo(n-2)
 
-def timeMe(f, n):
-  import time
-  s = time.time()
-  result = f(n)
-  e = time.time()
-  print(f"Function: {f.__name__}\n\tOutput: {result}\n\tExecution time: {e-s}")
-  
 
 if __name__ == "__main__":
   n = 35
-  timeMe(fib_rec_tailcall, n)
-  timeMe(fib_rec_memo, n)
-  timeMe(fib_rec_basic, n)
+  call(fib_rec_tailcall, n)
+  call(fib_rec_memo, n)
+  call(fib_rec_basic, n)
