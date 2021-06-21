@@ -16,12 +16,12 @@ def fib_rec_tailcall(n):
 def timeMe(f, n):
   import time
   s = time.time()
-  f(n)
+  result = f(n)
   e = time.time()
-  print(f"Time was {e-s}")
+  print(f"Function: {f.__name__}\n\tOutput: {result}\n\tExecution time: {e-s}")
   
 
 if __name__ == "__main__":
   import time
-  timeMe(fib_rec_tailcall, 40)
-  timeMe(fib_rec_basic, 40)
+  timeMe(fib_rec_tailcall, 403)
+  timeMe(fib_rec_basic, 30)
