@@ -1,21 +1,27 @@
 ; Return the sum of fibonacci sequence upto n
+(declaim (optimize (speed 0) (safety 3) (debug 3)))
 
-(defun basic-recursive-fib (n)
-  "basic recursion"
+(defun fib_rec_basic (n)
+  "naive recursion"
   (if (< n 2)
     n
-    (+ (basic-recursive-fib (- n 1))
-       (basic-recursive-fib (- n 2)))))
+    (+ (fib_rec_basic (- n 1))
+       (fib_rec_basic (- n 2)))))
 
-(defun tail-recursive-fib (n)
+(defun fib_rec_tailcall (n)
   "tailcall Optimized recursion"
-  (labels ((calc-fib (n a b)
+  (labels ((calc_fib (n a b)
              (if (= n 0)
                  a
-                 (calc-fib (- n 1) b (+ a b)))))
-    (calc-fib n 0 1)))
+                 (calc_fib (- n 1) b (+ a b)))))
+    (calc_fib n 0 1)))
 
-(defun memo-fib (n)
+(defun fib_rec_memo (n)
+  "Memoization optimized recursion"
+  ;(memoize (fn 
+  )
 
-(time (print (tail-recursive-fib 40)))
-(time (print (basic-recursive-fib 40)))
+
+(time (print (fib_rec_tailcall 40)))
+(time (print (fib_rec_basic 40)))
+
