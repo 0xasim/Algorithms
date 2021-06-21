@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Return the sum of fibonacci sequence upto n
 
 def fib_rec_basic(n):
@@ -13,8 +15,8 @@ def fib_rec_tailcall(n):
     return calc_fib(n-1, b, a+b)
   return calc_fib(n, 0 ,1)
 
-from memoization import cached
-@cached(thread_safe=False)
+import functools
+@functools.cache
 def fib_rec_memo(n):
   "O(log n). Same as naive recursion but with memoization optimization applied."
   if n < 2:
