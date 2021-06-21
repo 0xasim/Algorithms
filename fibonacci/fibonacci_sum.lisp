@@ -1,4 +1,7 @@
 ; Return the sum of fibonacci sequence upto n
+(load "~/.quicklisp/setup.lisp")
+(ql:quickload "fare-memoization")
+
 (declaim (optimize (speed 0) (safety 3) (debug 3)))
 
 (defun fib_rec_basic (n)
@@ -18,10 +21,14 @@
 
 (defun fib_rec_memo (n)
   "Memoization optimized recursion"
-  ;(memoize (fn 
-  )
+  (if (< n 2)
+    n
+    (+ (fib_rec_memo (- n 1))
+       (fib_rec_memo (- n 2)))))
 
+(fare-memoization:memoize 'fib_rec_memo)
 
 (time (print (fib_rec_tailcall 40)))
+(time (print (fib_rec_memo 40)))
 (time (print (fib_rec_basic 40)))
 
