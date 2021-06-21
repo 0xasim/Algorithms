@@ -2,8 +2,6 @@
 (load "~/.quicklisp/setup.lisp")
 (ql:quickload "fare-memoization")
 
-(declaim (optimize (speed 0) (safety 3) (debug 3)))
-
 (defun fib_rec_basic (n)
   "naive recursion"
   (if (< n 2)
