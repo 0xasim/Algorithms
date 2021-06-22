@@ -35,8 +35,8 @@
         q (+ p q))
       finally (return p)))
 
-(defvar *N* 35)
-(call 'fib_rec_tailcall *N*)
-(call 'fib_rec_memo *N*)  ; Illegal Harware instruction error for approx. > 18,800
-(call 'fib_loop_bubble *N*)
-(call 'fib_rec_basic *N*) 
+(let ((N 35))
+(call 'fib_rec_tailcall N)
+(call 'fib_rec_memo N)  ; Illegal Harware instruction error for approx. > 18,800
+(call 'fib_loop_bubble N)
+(call 'fib_rec_basic N))
