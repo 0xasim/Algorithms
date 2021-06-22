@@ -23,6 +23,7 @@
     n
     (+ (fib_rec_memo (- n 1))
        (fib_rec_memo (- n 2)))))
+(fare-memoization:memoize 'fib_rec_memo)
 
 (defun fib_loop_bubble (n)
   "O(n). Similar to bubblesort."
@@ -33,13 +34,11 @@
         q (+ p q))
       finally (return p)))
 
+(defun call (f n)
+  (time (print (funcall f n))))
 
-
-(fare-memoization:memoize 'fib_rec_memo)
-
-; TOD0: write a timeMe function just like the python one.
-(time (print (fib_rec_tailcall 800)))
-(time (print (fib_rec_memo 800)))  ; Illegal Harware instruction error for approx. > 18,800
-(time (print (fib_loop_bubble 800)))
-(time (print (fib_rec_basic 35)))
-
+(defparameter *N* 35)
+(call 'fib_rec_tailcall *N*)
+(call 'fib_rec_memo *N*)  ; Illegal Harware instruction error for approx. > 18,800
+(call 'fib_loop_bubble *N*)
+(call 'fib_rec_basic *N*) 
