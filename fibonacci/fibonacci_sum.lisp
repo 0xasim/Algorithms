@@ -1,5 +1,6 @@
 ; Return the sum of fibonacci sequence upto n
 (load "~/.quicklisp/setup.lisp")
+(load "extra/utils.lisp")
 (ql:quickload "fare-memoization")
 
 (defun fib_rec_basic (n)
@@ -34,10 +35,7 @@
         q (+ p q))
       finally (return p)))
 
-(defun call (f n)
-  (time (print (funcall f n))))
-
-(defparameter *N* 35)
+(defvar *N* 35)
 (call 'fib_rec_tailcall *N*)
 (call 'fib_rec_memo *N*)  ; Illegal Harware instruction error for approx. > 18,800
 (call 'fib_loop_bubble *N*)
