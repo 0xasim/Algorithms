@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
-
-from .extra.utils import call
-
 # Return the sum of fibonacci sequence upto n
 
+from .extra.utils import call
 def fib_rec_basic(n):
   "Exponential? Naive recursion."
   if n < 2:
@@ -28,6 +26,7 @@ def fib_rec_memo(n: int):
 
 if __name__ == "__main__":
   n = 35
+  
   call(fib_rec_tailcall, n)
   call(fib_rec_memo, n)
   call(fib_rec_basic, n)
