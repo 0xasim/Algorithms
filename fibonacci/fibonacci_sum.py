@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Return the sum of fibonacci sequence upto n
 
-from .extra.utils import call
+from extra.utils import call
 def fib_rec_basic(n):
   "Exponential? Naive recursion."
   if n < 2:
