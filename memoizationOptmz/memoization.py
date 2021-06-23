@@ -1,10 +1,14 @@
-import functools
-from timeit import timeit
+import sys
+sys.path.append('..')
+from fibonacci.fibonacci_sum import *
+from extra.decorators import rec_self
+from extra.utils import call
 
 """
 An optimization technique that caches and retrieves function results instead of recomputing
 Reduces time complexity but increases space requirements.
 """
+sys.setrecursionlimit(10**6)
 
 def memoize(func):
   cache = dict()
@@ -25,13 +29,21 @@ class memoizeC:
       self.cache[args] = self.f(*args)
     return self.cache[args]
 
-
-@memoizeC
-def fibonacci(n):
+@rec_self
+@memoize
+def myfibonacci(self, n):
   if n < 2:
     return n
-  return fibonacci(n-1) + fibonacci(n-2)
+  return self(n-1) + self(n-2)
 
+class fibonacciC:
+  def fib(self, n):
+    if n < 2:
+      return n
+    return self.fib(n-1) + self.fib(n-2)
+    
 if __name__ == "__main__":
   N = 35
-  print(timeit("fibonacci(N)", globals=globals(), number=1))
+  call(fib_rec_memo.__wrapped__, N)
+  call(myfibonacci, N)
+  call(fib_rec_basic, N)
