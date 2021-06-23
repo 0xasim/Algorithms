@@ -26,12 +26,11 @@ def fib_rec_memo(n: int):
   return fib_rec_memo(n-1) + fib_rec_memo(n-2)
 
 from memoizationOptmz.memoization import memoize
-fib_rec_mymemo = memoize(fib_rec_basic)
+fib_rec_basic = memoize(fib_rec_basic)
 
 if __name__ == "__main__":
   n = 35
   
   call(fib_rec_tailcall, n)
   call(fib_rec_memo, n)
-  call(fib_rec_mymemo, n)
   call(fib_rec_basic, n)
