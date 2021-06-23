@@ -1,7 +1,7 @@
 import sys
 sys.path.append('..')
 from fibonacci.fibonacci_sum import *
-from extra.decorators import rec_self
+from extra.decorators import withself, bind
 from extra.utils import call
 
 """
@@ -29,14 +29,18 @@ class memoizeC:
       self.cache[args] = self.f(*args)
     return self.cache[args]
 
-@rec_self #@memoize
-def f1(self, n):
+#@withself
+def f(self, n):
   if n < 2:
     return n
   return self(n-1) + self(n-2)
 
-f2 = rec_self(memoize(f1.__wrapped__))
-
+# Why does this order of applying wrappers work and not other
+f2 = withself(memoize(f))
+f3 = withself(memoizeC(f))
+f1 = withself(f)
+print(f3.__name__)
+print(f2.__name__)
 
 class fibonacciC:
   def fib(self, n):
@@ -47,6 +51,7 @@ class fibonacciC:
 if __name__ == "__main__":
   N = 35
   call(fib_rec_memo.__wrapped__, N)
+  call(f3, N) # function name is still f1?
+  call(f2, N) # function name is still f1?
   call(f1, N)
-  call(f2, N)
   call(fib_rec_basic, N)
