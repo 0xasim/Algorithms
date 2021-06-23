@@ -42,6 +42,10 @@ if __name__ == "__main__":
   N = 35
   call(fib_rec_mymem, N)
   #call(fib_rec_mymemC, N)
+
+  fib_rec_basic = functools.cache(fib_rec_basic)
+  call(fib_rec_basic, N)
   call(fib_rec_memo, N)
   call(fib_rec_tailcall, N)
+  fib_rec_basic = fib_rec_basic.__wrapped__
   call(fib_rec_basic, N)
