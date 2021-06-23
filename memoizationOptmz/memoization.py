@@ -37,11 +37,11 @@ class fibonacciC:
     return self.fib(n-1) + self.fib(n-2)
     
 if __name__ == "__main__":
-  fib_rec_mymem = memoize(fib_rec_self)
-  fib_rec_mymemC = lambda n: memoizeC(fib_rec_self(n))
+  fib_rec_mymem = withself(memoize(fib_rec_self))
+  #fib_rec_mymemC = lambda n: memoizeC(withself(fib_rec_self(n)))
   N = 35
   call(fib_rec_mymem, N)
-  call(fib_rec_mymemC, N)
+  #call(fib_rec_mymemC, N)
   call(fib_rec_memo, N)
   call(fib_rec_tailcall, N)
   call(fib_rec_basic, N)
