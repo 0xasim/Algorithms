@@ -3,6 +3,7 @@ sys.path.append('..')
 from fibonacci.fibonacci_sum import *
 from extra.decorators import withself
 from extra.utils import call
+import functools
 
 """
 An optimization technique that caches and retrieves function results instead of recomputing
@@ -29,9 +30,6 @@ class memoizeC:
       self.cache[args] = self.f(*args)
     return self.cache[args]
 
-fib_rec_mymem = lambda n: memoize(fib_rec_self)
-fib_rec_mymemC = lambda n: memoizeC(fib_rec_self)
-
 class fibonacciC:
   def fib(self, n):
     if n < 2:
@@ -39,6 +37,8 @@ class fibonacciC:
     return self.fib(n-1) + self.fib(n-2)
     
 if __name__ == "__main__":
+  fib_rec_mymem = memoize(fib_rec_self)
+  fib_rec_mymemC = lambda n: memoizeC(fib_rec_self(n))
   N = 35
   call(fib_rec_mymem, N)
   call(fib_rec_mymemC, N)

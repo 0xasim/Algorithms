@@ -4,6 +4,7 @@ import sys
 sys.path.append('..')
 from extra.utils import call, callDec
 from extra.decorators import withself
+from memoizationOptmz.memoization import memoize
 
 def fib_rec_basic(n):
   "Exponential? Naive recursion."
@@ -28,6 +29,7 @@ def fib_rec_memo(n: int):
   return fib_rec_memo(n-1) + fib_rec_memo(n-2)
 
 @withself
+@memoize
 def fib_rec_self(self, n):
   "Exponential? Naive recursion."
   if n < 2:
@@ -38,4 +40,4 @@ if __name__ == "__main__":
   n = 35
   fib_rec_tailcall(n)
   call(fib_rec_memo, n)
-  call(fib_rec_basic(n))
+  call(fib_rec_basic, n)
