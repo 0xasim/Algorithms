@@ -29,15 +29,8 @@ class memoizeC:
       self.cache[args] = self.f(*args)
     return self.cache[args]
 
-def f(self, n):
-  if n < 2:
-    return n
-  return self(n-1) + self(n-2)
-
-# Why does this order of applying wrappers work and not other
-f2 = withself(memoize(f))
-f3 = withself(memoizeC(f))
-f1 = withself(f)
+fib_rec_mymem = lambda n: memoize(fib_rec_self)
+fib_rec_mymemC = lambda n: memoizeC(fib_rec_self)
 
 class fibonacciC:
   def fib(self, n):
@@ -47,8 +40,8 @@ class fibonacciC:
     
 if __name__ == "__main__":
   N = 35
-  call(fib_rec_memo.__wrapped__, N)
-  call(f3, N) # function name is still f1?
-  call(f2, N) # function name is still f1?
-  call(f1, N)
+  call(fib_rec_mymem, N)
+  call(fib_rec_mymemC, N)
+  call(fib_rec_memo, N)
+  call(fib_rec_tailcall, N)
   call(fib_rec_basic, N)

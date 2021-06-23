@@ -3,6 +3,7 @@
 import sys
 sys.path.append('..')
 from extra.utils import call, callDec
+from extra.decorators import withself
 
 def fib_rec_basic(n):
   "Exponential? Naive recursion."
@@ -10,7 +11,7 @@ def fib_rec_basic(n):
     return n
   return fib_rec_basic(n-1) + fib_rec_basic(n-2)
 
-@callDec
+#@callDec
 def fib_rec_tailcall(n):
   "Recursion with tailcall optimization."
   def calc_fib(n, a, b):
@@ -26,8 +27,15 @@ def fib_rec_memo(n: int):
     return n
   return fib_rec_memo(n-1) + fib_rec_memo(n-2)
 
+@withself
+def fib_rec_self(self, n):
+  "Exponential? Naive recursion."
+  if n < 2:
+    return n
+  return self(n-1) + self(n-2)
+
 if __name__ == "__main__":
   n = 35
   fib_rec_tailcall(n)
   call(fib_rec_memo, n)
-  fib_rec_basic(n)
+  call(fib_rec_basic(n))
