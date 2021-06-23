@@ -29,12 +29,14 @@ class memoizeC:
       self.cache[args] = self.f(*args)
     return self.cache[args]
 
-@rec_self
-@memoize
-def myfibonacci(self, n):
+@rec_self #@memoize
+def f1(self, n):
   if n < 2:
     return n
   return self(n-1) + self(n-2)
+
+f2 = rec_self(memoize(f1.__wrapped__))
+
 
 class fibonacciC:
   def fib(self, n):
@@ -45,5 +47,6 @@ class fibonacciC:
 if __name__ == "__main__":
   N = 35
   call(fib_rec_memo.__wrapped__, N)
-  call(myfibonacci, N)
+  call(f1, N)
+  call(f2, N)
   call(fib_rec_basic, N)
