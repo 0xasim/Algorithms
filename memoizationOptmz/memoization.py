@@ -1,7 +1,7 @@
 import sys
 sys.path.append('..')
 from fibonacci.fibonacci_sum import *
-from extra.decorators import withself, bind
+from extra.decorators import withself
 from extra.utils import call
 
 """
@@ -29,7 +29,6 @@ class memoizeC:
       self.cache[args] = self.f(*args)
     return self.cache[args]
 
-#@withself
 def f(self, n):
   if n < 2:
     return n

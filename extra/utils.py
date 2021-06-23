@@ -12,6 +12,7 @@ def call(f, n):
   return retval
 
 def callDec(func):
+  "Bad idea when applied to recursive functions"
   @wraps(func)
   def _f(*args):
     _t, retval = timeMe(func, *args)

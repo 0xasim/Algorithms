@@ -30,4 +30,4 @@ if __name__ == "__main__":
   n = 35
   fib_rec_tailcall(n)
   call(fib_rec_memo, n)
-  #fib_rec_basic(n)
+  fib_rec_basic(n)
