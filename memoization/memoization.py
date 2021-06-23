@@ -12,12 +12,21 @@ def memoize(func):
   def to_cache(*args):
     if args in cache:
       return cache[args]
-    result = func(*args)
-    cache[args] = result  # No limit on cache size. Might grow big
-    return result
+    cache[args] = func(*args)  #No limit on cache size. Might grow big
+    return cache[args]
   return to_cache
 
-@memoize
+class memoizeC:
+  def __init__(self, f):
+    self.f = f
+    self.cache = dict()
+  def __call__(self, *args):
+    if not args in self.cache:
+      self.cache[args] = self.f(*args)
+    return self.cache[args]
+
+
+@memoizeC
 def fibonacci(n):
   if n < 2:
     return n
