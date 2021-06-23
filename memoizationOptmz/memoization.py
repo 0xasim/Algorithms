@@ -39,8 +39,6 @@ def f(self, n):
 f2 = withself(memoize(f))
 f3 = withself(memoizeC(f))
 f1 = withself(f)
-print(f3.__name__)
-print(f2.__name__)
 
 class fibonacciC:
   def fib(self, n):

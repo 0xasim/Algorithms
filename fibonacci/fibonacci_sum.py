@@ -2,7 +2,7 @@
 # Return the sum of fibonacci sequence upto n
 import sys
 sys.path.append('..')
-from extra.utils import call
+from extra.utils import call, callDec
 
 def fib_rec_basic(n):
   "Exponential? Naive recursion."
@@ -10,6 +10,7 @@ def fib_rec_basic(n):
     return n
   return fib_rec_basic(n-1) + fib_rec_basic(n-2)
 
+@callDec
 def fib_rec_tailcall(n):
   "Recursion with tailcall optimization."
   def calc_fib(n, a, b):
@@ -27,6 +28,6 @@ def fib_rec_memo(n: int):
 
 if __name__ == "__main__":
   n = 35
-  call(fib_rec_tailcall, n)
+  fib_rec_tailcall(n)
   call(fib_rec_memo, n)
-  call(fib_rec_basic, n)
+  #fib_rec_basic(n)
