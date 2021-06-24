@@ -43,6 +43,7 @@ if __name__ == "__main__":
   X = data.iloc[0:99, [0, 2]].values  # Binary class selection
 
   # Data plotting
+  print(data.head())
   plt.scatter(X[:50, 0], X[:50, 1], 
               color='red', marker='o', label='setosa')
   plt.scatter(X[50:100, 0], X[50:100, 1], 
@@ -52,20 +53,18 @@ if __name__ == "__main__":
   plt.legend(loc='upper left')
   #plt.show()
 
-  # Learning
+  # Learning or Model fitting
   ppn = Perceptron(eta=0.01, n_iter=20)
   errors = ppn.fit(X, y)
-  print(data.head())
-  print(f'Loss over iteration: {errors}')
-  print(ppn.predict(np.array([3.0, 0.8])))
 
+  # Loss curve
+  print(f'Loss over iteration: {errors}')
   plt.plot(range(1, len(ppn.errors_) + 1), ppn.errors_, marker='o')
   plt.xlabel('Epochs')
   plt.ylabel('Number of updates')
   #plt.show()
 
   def plot_decision_regions(X, y, classifier, resolution=0.02):
-
       # setup marker generator and color map
       markers = ('s', 'x', 'o', '^', 'v')
       colors = ('red', 'blue', 'lightgreen', 'gray', 'cyan')
