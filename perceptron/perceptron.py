@@ -11,7 +11,7 @@ class Perceptron:
     self.w_ = np.random.rand(X.shape[1]+1)
     self.errors_ = []
 
-    for _ in range(n_iter):
+    for _ in range(self.n_iter):
       errors = 0
       for xi, yi in zip(X, y):
         update = self.eta * (yi - self.predict(xi))
@@ -19,6 +19,7 @@ class Perceptron:
         self.w_[0] += update
         errors += int(update!=0.0)
       self.errors_.append(errors)
+    return self.errors_
 
   def net_input(self, xi):
     return np.dot(self.w_[1:], xi) + self.w_[0]
@@ -32,13 +33,13 @@ if __name__ == "__main__":
       data = pd.read_csv(df, header=None, encoding='utf-8')
   except FileNotFoundError:
     data = pd.read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data", header=None, encoding='utf-8')
-    data.to_csv("iris.data")
+    data.to_csv("iris.data", header=False, index=False)
 
+  y = data.iloc[0:99, 4].values # 4th column contains labels
+  y = np.where(y == "Iris-setosa", -1, 1) # replace names with -1 and 1
+  X = data.iloc[0:99, [0, 2]].values  # Binary class selection
 
-  print(data.tail())
-  y = data.iloc[0:99, 4].values
-  print(y)
-  y = np.where(y == "Iris-setosa", -1, 1)
-
-  print(y)
-  p = Perceptron(eta=0.1, n_iter=20)
+  p = Perceptron(eta=0.01, n_iter=20)
+  errors = p.fit(X, y)
+  print(errors)
+  print(p.predict(np.array([3.0, 0.8])))
