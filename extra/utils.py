@@ -16,6 +16,6 @@ def callDec(func):
   @wraps(func)
   def _f(*args):
     _t, retval = timeMe(func, *args)
-    print(f"Function: {func.__name__}\n\tOutput: {retval}\n\tExecution time: {_t}")
+    print(f"Function: {func.__name__}\n\tOutput:\n{retval}\n\tExecution time: {_t}\n")
     return retval
   return _f

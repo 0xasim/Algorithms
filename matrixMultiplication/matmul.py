@@ -17,5 +17,6 @@ def matmul_naive(A, B):
 if __name__ == "__main__":
   A = np.array([[1, 2], [3, 4]])
   B = np.array([[5, 6], [7, 8]])
+
   call(matmul_naive, A, B)
   call(np.dot, A, B)
