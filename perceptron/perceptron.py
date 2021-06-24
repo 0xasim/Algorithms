@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 import sys
 sys.path.append('/Users/dude/fun/ml/')
-import real_perceptron
 
 class Perceptron:
   """ Use me to solve your linearly separable binary classification problem. """
@@ -58,7 +57,6 @@ if __name__ == "__main__":
 
   # Learning or Model fitting
   ppn = Perceptron(eta=0.01, n_iter=20)
-  #ppn = real_perceptron.Perceptron(eta=0.01, n_iter=20)
   errors = ppn.fit(X, y)
 
   # Loss curve
