@@ -1,14 +1,14 @@
 import time
 from functools import wraps
-def timeMe(f, n):
+def timeMe(f, *args):
   _t0 = time.time()
-  retval = f(n)
+  retval = f(*args)
   _t1 = time.time() 
   return (_t1 - _t0, retval)
   
-def call(f, *n):
-  _t, retval = timeMe(f, *n)
-  print(f"Function: {f.__name__}\n\tOutput: {retval}\n\tExecution time: {_t}")
+def call(f, *args):
+  _t, retval = timeMe(f, *args)
+  print(f"Function: {f.__name__}\n\tOutput:\n{retval}\n\tExecution time: {_t}\n")
   return retval
 
 def callDec(func):
