@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
+#from sklearn.linear_model import Perceptron as Perceptron_sk
 import sys
 sys.path.append('/Users/dude/fun/ml/')
 
@@ -59,6 +60,8 @@ if __name__ == "__main__":
   ppn = Perceptron(eta=0.01, n_iter=20)
   errors = ppn.fit(X, y)
 
+  #ppn2 = 
+
   # Loss curve
   print(f'Loss over iteration: {errors}')
   plt.plot(range(1, len(ppn.errors_) + 1), ppn.errors_, marker='o')
@@ -97,4 +100,4 @@ if __name__ == "__main__":
   plt.xlabel('sepal length [cm]')
   plt.ylabel('petal length [cm]')
   plt.legend(loc='upper left')
-  plt.show()
+  #plt.show()
