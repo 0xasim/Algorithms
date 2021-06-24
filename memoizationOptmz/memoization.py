@@ -12,6 +12,7 @@ Reduces time complexity but increases space requirements.
 sys.setrecursionlimit(10**6)
 
 def memoize(func):
+  print(f"memoizing: {func.__name__}")
   cache = dict()
   @functools.wraps(func)
   def to_cache(*args):
@@ -39,14 +40,13 @@ class fibonacciC:
 if __name__ == "__main__":
   fib_rec_mymem = withself(memoize(fib_rec_self))
   fib_rec_mymemC = withself(memoizeC(fib_rec_self))
+
   N = 35
   call(fib_rec_mymem, N)
   call(fib_rec_mymemC, N)
-
+  #unmemoizable because recursive call go to original function and not this reassignment (my theory)
   fib_rec_basic = memoize(fib_rec_basic)
   call(fib_rec_basic, N)
-
   call(fib_rec_memo, N)
-  call(fib_rec_tailcall, N)
-  fib_rec_basic = fib_rec_basic.__wrapped__
-  call(fib_rec_basic, N)
+  fib_rec_tailcall(N)
+  call(withself(fib_rec_self), N)
