@@ -2,6 +2,10 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
+import sys
+sys.path.append('/Users/dude/fun/ml/')
+import real_perceptron
+
 class Perceptron:
   """ Use me to solve your linearly separable binary classification problem. """
   def __init__(self, eta=0.01, n_iter=50):
@@ -23,10 +27,9 @@ class Perceptron:
     return self.errors_
 
   def net_input(self, xi):
-    return np.dot(self.w_[1:], xi) + self.w_[0]
+    return np.dot(xi, self.w_[1:]) + self.w_[0]
 
   def predict(self, xi):
-    #return 1 if self.net_input(xi) >=  0.0 else -1
     return np.where(self.net_input(xi) >= 0.0, 1, -1)
 
 if __name__ == "__main__":
@@ -55,6 +58,7 @@ if __name__ == "__main__":
 
   # Learning or Model fitting
   ppn = Perceptron(eta=0.01, n_iter=20)
+  #ppn = real_perceptron.Perceptron(eta=0.01, n_iter=20)
   errors = ppn.fit(X, y)
 
   # Loss curve
