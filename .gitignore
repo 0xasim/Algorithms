@@ -3,3 +3,4 @@ __pycache__
 **/__pyache__
 *.lisp.swp
 *.swp
+*.data
