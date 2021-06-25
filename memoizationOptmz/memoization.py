@@ -31,12 +31,6 @@ class memoizeC:
       self.cache[args] = self.f(*args)
     return self.cache[args]
 
-class fibonacciC:
-  def fib(self, n):
-    if n < 2:
-      return n
-    return self.fib(n-1) + self.fib(n-2)
-    
 if __name__ == "__main__":
   fib_rec_basic = memoize(fib_rec_basic)
   fib_rec_mymem = withself(memoize(fib_rec_self))
