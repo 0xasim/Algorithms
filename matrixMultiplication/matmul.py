@@ -17,14 +17,30 @@ def matmul_naive(A, B):
 def matmul_cache(A, B):
   assert A.shape[1] == B.shape[0]
   C = np.zeros([A.shape[0], B.shape[1]])
-  
+	
+	
 def matmul_strassen(A, B):
   assert A.shape[0] == A.shape[1] == B.shape[0] # Be a square
-  print(np.split(A, 2, 2))
+  def blockshaped(arr, nrows, ncols):
+    """
+    Return an array of shape (n, nrows, ncols) where
+    n * nrows * ncols = arr.size
+
+    If arr is a 2D array, the returned array should look like n subblocks with
+    each subblock preserving the "physical" layout of arr.
+    """
+    h, w = arr.shape
+    assert h % nrows == 0, f"{h} rows is not evenly divisible by {nrows}"
+    assert w % nrows == 0, f"{w} rows is not evenly divisible by {ncols}"
+	
+blockshaped(A, 2, 2)
+#return np.split(A, [[1,1],[1, 1]], 1)
+return None
 
 if __name__ == "__main__":
   A = np.array([[1, 2], [4, 5]])
   B = np.array([[5, 6], [9, 20]])
+  C = np.array([[1,2,3],[4,5,6]])
 
   call(matmul_naive, A, B)
   call(np.dot, A, B)

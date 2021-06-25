@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
-#from sklearn.linear_model import Perceptron as Perceptron_sk
 import sys
 sys.path.append('/Users/dude/fun/ml/')
 
@@ -54,7 +53,7 @@ if __name__ == "__main__":
   plt.xlabel('sepal length [cm]')
   plt.ylabel('petal length [cm]')
   plt.legend(loc='upper left')
-  #plt.show()
+  plt.show()
 
   # Learning or Model fitting
   ppn = Perceptron(eta=0.01, n_iter=20)
@@ -67,7 +66,7 @@ if __name__ == "__main__":
   plt.plot(range(1, len(ppn.errors_) + 1), ppn.errors_, marker='o')
   plt.xlabel('Epochs')
   plt.ylabel('Number of updates')
-  #plt.show()
+  plt.show()
 
   def plot_decision_regions(X, y, classifier, resolution=0.02):
       # setup marker generator and color map
@@ -100,4 +99,4 @@ if __name__ == "__main__":
   plt.xlabel('sepal length [cm]')
   plt.ylabel('petal length [cm]')
   plt.legend(loc='upper left')
-  #plt.show()
+  plt.show()
