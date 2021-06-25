@@ -25,17 +25,18 @@ def matmul_strassen(A, B):
     """
     Return an array of shape (n, nrows, ncols) where
     n * nrows * ncols = arr.size
-
     If arr is a 2D array, the returned array should look like n subblocks with
     each subblock preserving the "physical" layout of arr.
     """
     h, w = arr.shape
     assert h % nrows == 0, f"{h} rows is not evenly divisible by {nrows}"
     assert w % nrows == 0, f"{w} rows is not evenly divisible by {ncols}"
+    return (arr.reshape(int(h/nrows), nrows, -1, ncols)
+               .swapaxes(1,2)
+               .reshape(-1, nrows, ncols))
 	
-blockshaped(A, 2, 2)
-#return np.split(A, [[1,1],[1, 1]], 1)
-return None
+  return blockshaped(A, 1, 1)
+  #return np.split(A, [[1,1],[1, 1]], 1)
 
 if __name__ == "__main__":
   A = np.array([[1, 2], [4, 5]])
