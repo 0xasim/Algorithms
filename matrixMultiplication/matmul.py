@@ -35,8 +35,7 @@ def matmul_strassen(A, B):
                .swapaxes(1,2)
                .reshape(-1, nrows, ncols))
 	
-  return blockshaped(A, 1, 1)
-  #return np.split(A, [[1,1],[1, 1]], 1)
+  a11, a12, a21, a22 = blockshaped(A, 1, 1)
 
 if __name__ == "__main__":
   A = np.array([[1, 2], [4, 5]])
