@@ -1,3 +1,5 @@
+# https://github.com/python/cpython/blob/42336def77f53861284336b3335098a1b9b8cab2/Lib/functools.py#L448
+
 import sys
 sys.path.append('..')
 from fibonacci.fibonacci_sum import *
