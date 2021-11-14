@@ -4,3 +4,4 @@ __pycache__
 *.lisp.swp
 *.swp
 *.data
+.DS_Store
