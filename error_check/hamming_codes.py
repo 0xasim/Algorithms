@@ -1,15 +1,24 @@
 '''
 An implementation of the error correction hamming codes from this 3B1B video
-https://www.youtube.com/watch?v=X8jsijhllIA
+https://www.youtube.com/watch?v=X8jsijhllIA   //3B1B
+https://www.youtube.com/watch?v=b3NxrZOu_CE
+https://www.youtube.com/watch?v=h0jloehRKas   //Ben Eater
 '''
 odd_cols = lambda block, n_set: int(sum([sum([b[n] for b in block]) for n in n_set])%2)
 odd_rows = lambda block, n_set: int(sum([sum(block[n]) for n in n_set])%2)
+def gen_indexes(npb):
+  positions = [1,2]
+  for i in range(npb-2):
+    positions.append(positions[-1]*2)
+  print(positions)
+  return None
 
 import math
 def parity_check(block):
-  f_bit_err = int(block[0][0] == (odd_rows(block, list(range(len(block))))))
+  f_bit_err = block[0][0] == odd_rows(block, list(range(len(block))))
   print(f'f_bit_err: {f_bit_err}')
-  npar_bits = int(math.log(len(block)**2, 2))
+  n_par_bits = int(math.log(len(block)**2, 2))
+  indexes = gen_indexes(n_par_bits)
   indexes = [(2,3), (1,3)] # PB index 1 and 4 use (1,3) cols or rows
   # par is 2x2 int matrix
   par = [odd_rows(block, s) for s in indexes], [odd_cols(block, s) for s in indexes]
