@@ -15,7 +15,8 @@ def parity_check(block):
   par = [odd_rows(block, s) for s in indexes], [odd_cols(block, s) for s in indexes]
   # bpar is 1x2 binary vector
   bpar = [bin(int(''.join(map(str, p)), 2)) for p in par]
-  return (f_bit_err, [int(bpar[i], 2) for i in range(len(bpar))])
+  errI = [int(bpar[i], 2) for i in range(len(bpar))]
+  return (f_bit_err, errI)
 
 def fix_error(block, err):
   f_bit_err, errI = err[0], err[1]
@@ -23,7 +24,7 @@ def fix_error(block, err):
   if f_bit_err:
     block[errR][errC] = int(not block[errR][errC])
   elif not f_bit_err and (errR or errC):
-    print("TWO BIT ERROR"*10)
+    print("TWO BIT ERROR "*10)
   return block
 
 if __name__ == "__main__":
