@@ -55,7 +55,7 @@ def get_iris():
       f.write(pdata.to_csv(header=None, index=False))
   targets = pdata.iloc[:100, 4].values
   targets = np.where(targets == 'Iris-setosa', -1, 1)
-  features = pdata.iloc[:100, :3].values
+  features = pdata.iloc[:100, :4].values
   return (features, targets)
 
 if __name__ == '__main__':
