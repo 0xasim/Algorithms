@@ -42,6 +42,7 @@ if __name__ == '__main__':
   print(adl.accuracy(X, y))
 
   X_std = np.copy(X)
+  ''' Featue scaling: standardization '''
   for i in range(X.shape[1]):
     X_std[:,i] = (X[:,i] - X[:,i].mean()) / X[:,i].std()
   adl_std = Adaline(eta=0.001, n_iter=15).fit(X_std, y)
