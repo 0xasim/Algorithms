@@ -10,7 +10,8 @@ class Adaline():
     '''Linear activation function'''
     return X
 
-  def fit_grad_descent(self, X, y):
+  def fit_bgd(self, X, y):
+    '''Fit using batch gradient descent'''
     rgen = np.random.RandomState(self.random_state)
     self.w_ = rgen.normal(loc=0.0, scale=0.01,\
                          size=1 + X.shape[1])
@@ -25,7 +26,8 @@ class Adaline():
       self.cost_.append(cost)
     return self
 
-  def fit_stoch_grad_descent(self, X, y):
+  def fit_sgd(self, X, y):
+    '''Fit using stochastic gradient descent'''
     self.rgen = np.random.RandomState(self.random_state)
     self.w_ = self.rgen.normal(loc=0.0, scale=0.01,\
                          size=1 + X.shape[1])
@@ -57,18 +59,18 @@ class Adaline():
 if __name__ == '__main__':
   from perceptron import get_iris
   X, y = get_iris()
-  adl = Adaline(eta=0.0001, n_iter=100).fit_grad_descent(X, y)
-  print(adl.cost_)
-  print(adl.accuracy(X, y))
+  ada_bgd = Adaline(eta=0.0001, n_iter=100).fit_bgd(X, y)
+  print(ada_bgd.cost_)
+  print(ada_bgd.accuracy(X, y))
 
   X_std = np.copy(X)
-  ''' Featue scaling: standardization '''
+  ''' Featue scaling: Standardization '''
   for i in range(X.shape[1]):
     X_std[:,i] = (X[:,i] - X[:,i].mean()) / X[:,i].std()
-  adl_std = Adaline(eta=0.001, n_iter=15).fit_grad_descent(X_std, y)
-  print(adl_std.cost_)
-  print(adl_std.accuracy(X_std, y))
+  ada_std = Adaline(eta=0.001, n_iter=15).fit_bgd(X_std, y)
+  print(ada_std.cost_)
+  print(ada_std.accuracy(X_std, y))
 
-  adl_stoch = Adaline(eta=0.001, n_iter=15).fit_stoch_grad_descent(X_std, y)
-  print(adl_stoch.cost_)
-  print(adl_stoch.accuracy(X_std, y))
+  ada_sgd = Adaline(eta=0.001, n_iter=15).fit_sgd(X_std, y)
+  print(ada_sgd.cost_)
+  print(ada_sgd.accuracy(X_std, y))
