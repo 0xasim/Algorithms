@@ -17,10 +17,10 @@ class logisticReg():
     self.w_ = rgen.normal(loc=0.0, scale=0.01, size=1 + X.shape[1])
     self.cost_ = list()
     for _ in range(self.n_iter):
-      phi_z = self.activation(self.net_input(X)) # can be interpreted as probability of what?
-      errors = y - phi_z
-      self.w_[1:] += self.eta * X.T.dot(errors)
-      self.w_[0] += self.eta * errors.sum()
+      phi_z = self.activation(self.net_input(X)) # interpretable as prob of what?
+      grad = y - phi_z
+      self.w_[1:] += self.eta * X.T.dot(grad)
+      self.w_[0] += self.eta * grad.sum()
       cost = (-y.dot(np.log(phi_z)) - ((1 - y).dot(np.log(1 - phi_z))))
       self.cost_.append(cost.sum())
 
@@ -30,7 +30,8 @@ class logisticReg():
 if __name__ == '__main__':
   from perceptron import get_iris
   X, y = get_iris()
-  logreg = logisticReg(eta=0.0005, n_iter=100)
+  y = np.array([0 if yi == -1 else 1 for yi in y])
+  logreg = logisticReg(eta=0.01, n_iter=1000)
   logreg.fit(X, y)
   print(logreg.cost_)
 
